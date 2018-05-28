@@ -5,3 +5,4 @@ authors = ["Drakeor <drakeor.dragon@gmail.com>"]
 
 [dependencies]
 rulinalg="0.4.2"
+rand="0.5"
