@@ -1,3 +1,6 @@
+extern crate rulinalg;
+
+use rulinalg::matrix::Matrix;
 
 pub struct NeuralNetwork {
     inputLayerSize : i32,
@@ -6,7 +9,7 @@ pub struct NeuralNetwork {
 }
 
 impl NeuralNetwork {
-    pub fn forward(&mut self, matrix: Mat<i32>)
+    pub fn forward(&mut self, matrix : Matrix<f32>)
     {
         
     }
