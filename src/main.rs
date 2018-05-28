@@ -1,6 +1,7 @@
 extern crate rulinalg;
 extern crate rand;
 
+use rulinalg::matrix::BaseMatrix;
 use rulinalg::matrix::Matrix;
 use rulinalg::matrix::BaseMatrixMut;
 
@@ -35,20 +36,20 @@ impl NeuralNetwork {
     pub fn forward(&mut self, matrix : Matrix<f32>) -> Matrix<f32>
     {
         self.z2 = matrix * &self.w1;
-        self.a2 = self.z2.apply(&sigmoid) as Matrix<f32>;
-        self.z3 = self.a2 * &self.w2;
-        self.z3.apply(&sigmoid)
+        self.a2 = self.z2.clone().apply(&sigmoid);
+        self.z3 = self.a2.clone() * &self.w2;
+        self.z3.clone().apply(&sigmoid)
     }
 
     // Calculate cost function prime
     pub fn costFunctionPrime(&mut self, X : Matrix<f32>, y : Matrix<f32>) -> (Matrix<f32>, Matrix<f32>) {
-        let yHat = self.forward(X);
+        let yHat = self.forward(X.clone());
 
-        let delta3 = self.z3.apply(&sigmoid_prime);
+        let delta3 = self.z3.clone().apply(&sigmoid_prime);
         let delta33 = delta3 * ((y - yHat).apply(&negative_elem));
-        let djdw2 = self.a2.transpose() * delta33;
+        let djdw2 = self.a2.transpose() * delta33.clone();
 
-        let delta2 = delta33 * self.w2.transpose() * self.z2.apply(&sigmoid_prime);
+        let delta2 = delta33 * self.w2.transpose() * self.z2.clone().apply(&sigmoid_prime);
         let djdw1 = X.transpose() * delta2;
 
         (djdw2, djdw1)
