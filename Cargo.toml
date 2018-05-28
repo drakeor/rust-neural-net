@@ -1,0 +1,6 @@
+[package]
+name = "rust_neuralnet"
+version = "0.1.0"
+authors = ["Drakeor <drakeor.dragon@gmail.com>"]
+
+[dependencies]
