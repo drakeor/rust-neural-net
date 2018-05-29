@@ -69,9 +69,9 @@ fn main() {
         w2: Matrix::new(3, 1, vec![
             rand::random::<f32>(), rand::random::<f32>(), rand::random::<f32>()                
         ]),
-        a2: Matrix::new(1,0, vec![1_f32]),
-        z2: Matrix::new(1,0, vec![1_f32]),
-        z3: Matrix::new(1,0, vec![1_f32])
+        a2: Matrix::new(1,1, vec![1_f32]),
+        z2: Matrix::new(1,1, vec![1_f32]),
+        z3: Matrix::new(1,1, vec![1_f32])
     };
     
     // Starting stuff
